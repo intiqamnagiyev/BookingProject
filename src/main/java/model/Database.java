@@ -7,22 +7,11 @@ import java.util.*;
 public class Database implements Serializable {
 
 
-
-    public void setBookingList(List<Booking> bookingList) {
-        this.bookingList = bookingList;
-    }
-
     private List<Flight> flightList = new ArrayList<>();
     private List<Booking> bookingList = new ArrayList<>();
-    private List<User> userlist=new ArrayList<>();
+    private List<User> userlist = new ArrayList<>();
 
-    public List<User> getUserlist() {
-        return userlist;
-    }
-
-
-
-    public  List<Flight> readFromFileFlights() throws IOException, ClassNotFoundException {
+    public List<Flight> readFromFileFlights() throws IOException, ClassNotFoundException {
         File file = new File("schedule.txt");
         FileInputStream fis = new FileInputStream(file);
         ObjectInputStream ois = new ObjectInputStream(fis);
@@ -31,12 +20,13 @@ public class Database implements Serializable {
         fis.close();
         return flightList;
     }
-    public List<Booking> readFromFileMyBookings(){
-        try{
+
+    public List<Booking> readFromFileMyBookings() {
+        try {
             File file = new File("BOOKING.txt");
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            bookingList= (List<Booking>) ois.readObject ();
+            bookingList = (List<Booking>) ois.readObject();
             ois.close();
             fis.close();
         } catch (IOException | ClassNotFoundException e) {
@@ -44,17 +34,17 @@ public class Database implements Serializable {
         }
         return bookingList;
     }
-    public  boolean writeToFileBooking(){
 
+    public boolean writeToFileBooking() {
         try {
-            File file=new File("BOOKING.txt");
-            FileOutputStream fos=new FileOutputStream(file);
-            ObjectOutputStream oos=new ObjectOutputStream(fos);
+            File file = new File("BOOKING.txt");
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(bookingList);
             oos.close();
             fos.close();
             return true;
-        }catch (Exception io){
+        } catch (Exception io) {
             io.printStackTrace();
             System.out.println(io.getMessage());
             throw new RuntimeException();
@@ -63,14 +53,14 @@ public class Database implements Serializable {
 
     public List<Flight> getAllFlights() throws IOException, ClassNotFoundException {
         return readFromFileFlights();
-
     }
 
     public List<Booking> getAllBookings() {
         return readFromFileMyBookings();
-
     }
-
+    public List<User> getUserlist() {
+        return userlist;
+    }
 
 
     public List<Booking> getBookingList() {
@@ -88,25 +78,26 @@ public class Database implements Serializable {
 
     private List<User> readFromFileUsers() {
         try {
-            File file =new File("Users.txt");
-            FileInputStream fis=new FileInputStream(file);
-            ObjectInputStream ois=new ObjectInputStream(fis);
-            userlist= (List<User>) ois.readObject();
-        }catch (Exception e){
+            File file = new File("Users.txt");
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            userlist = (List<User>) ois.readObject();
+        } catch (Exception e) {
             throw new RuntimeException();
         }
         return userlist;
     }
-    public boolean writeToFileUsers(){
+
+    public boolean writeToFileUsers() {
         try {
-            File file=new File("Users.txt");
-            FileOutputStream fos=new FileOutputStream(file);
-            ObjectOutputStream oos=new ObjectOutputStream(fos);
+            File file = new File("Users.txt");
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(userlist);
             oos.close();
             fos.close();
             return true;
-        }catch (Exception io){
+        } catch (Exception io) {
             io.printStackTrace();
             System.out.println(io.getMessage());
             throw new IllegalArgumentException("something went wrong");

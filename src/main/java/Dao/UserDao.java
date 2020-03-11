@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserDao implements Dao<User> {
-    private Database database=new Database();
+    private Database database = new Database();
+
     @Override
     public Optional<User> getById(int id) {
         return Optional.empty();
@@ -20,7 +21,7 @@ public class UserDao implements Dao<User> {
 
     @Override
     public Optional<User> get(User user) {
-        return database.getAllUsers().stream().filter(u->u.equals(user)).findAny();
+        return database.getAllUsers().stream().filter(u -> u.equals(user)).findAny();
 
     }
 

@@ -17,29 +17,36 @@ public class Flight implements Serializable {
     private static int count = 0;
     static List<Flight> scList = new ArrayList<>();
 
+
+    public Flight() {
+    }
+
     private Flight(int id, City from, City to, LocalDate date, LocalTime time, int seats) {
         this.id = id;
         this.from = from;
         this.to = to;
         this.date = date;
         this.seats = seats;
-        this.time= time;
+        this.time = time;
     }
-    public static void createSchedule() throws IOException {
+
+    public static void createSchedule(){
         for (int i = 0; i < 30; i++) {
             Flight flight = new Flight(
                     ++count,
                     City.randCity(),
                     City.randCity(),
                     LocalDate.now(),
-                    LocalTime.now().plusHours((long) (Math.random()*10)).plusMinutes((long) (Math.random()*10)).truncatedTo(ChronoUnit.SECONDS),
+                    LocalTime.now().plusHours((long) (Math.random() * 10))
+                            .plusMinutes((long) (Math.random() * 10))
+                            .truncatedTo(ChronoUnit.SECONDS),
                     (int) (Math.random() * 100));
             scList.add(flight);
         }
         writeToFile(scList);
     }
 
-    public static void writeToFile(List<Flight> flights){
+    public static void writeToFile(List<Flight> flights) {
         try {
             File file = new File("schedule.txt");
             FileOutputStream fos = new FileOutputStream(file);
@@ -53,8 +60,7 @@ public class Flight implements Serializable {
         }
     }
 
-    public Flight() {
-    }
+
 
     public Flight(City to, LocalDate date) {
         this.to = to;

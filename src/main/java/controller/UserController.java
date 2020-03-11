@@ -1,15 +1,26 @@
 package controller;
 
+import model.Session;
 import model.User;
 import services.UserService;
 
 public class UserController {
-    private UserService userService =new UserService();
+    private UserService userService = new UserService();
+
     public void getUser(User user) {
-        userService.getUser(user);
+        try {
+            User user1 = userService.getUser(user);
+            Session.setUser(user1);
+        } catch (Exception e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public void creatNewUser(User user) {
-        userService.createNewUser(user);
+        if (userService.createNewUser(user)) {
+            System.out.println("succesfully signed up, please login");
+        } else {
+            System.out.println("sign up again");
+        }
     }
 }

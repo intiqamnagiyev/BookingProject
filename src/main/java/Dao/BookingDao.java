@@ -3,8 +3,8 @@ package Dao;
 import model.Booking;
 import model.Database;
 import model.Passanger;
+import model.Session;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +16,7 @@ public class BookingDao implements Dao<Booking> {
     private Database database = new Database();
 
     @Override
-    public List<Booking> getAll() throws IOException, ClassNotFoundException {
+    public List<Booking> getAll() {
         return database.getAllBookings();
     }
 
@@ -37,8 +37,10 @@ public class BookingDao implements Dao<Booking> {
     }
 
     @Override
-    public boolean delete(int id) throws IOException, ClassNotFoundException {
-        List<Booking> collect = database.getAllBookings().stream().filter(booking -> booking.getId() == id).collect(Collectors.toList());
+    public boolean delete(int id) {
+        List<Booking> collect = database.getAllBookings()
+                .stream().filter(booking -> booking.getId() == id)
+                .collect(Collectors.toList());
         database.getBookingList().removeAll(collect);
         return database.writeToFileBooking();
 
@@ -61,6 +63,6 @@ public class BookingDao implements Dao<Booking> {
             String name = scanner.next();
             passengers.add(new Passanger(name));
         }
-        return new Booking(id, passengers);
+        return new Booking(Session.getUser(), id, passengers);
     }
 }

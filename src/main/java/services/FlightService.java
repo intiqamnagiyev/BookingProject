@@ -5,7 +5,6 @@ import model.Flight;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 public class FlightService {
     private FlightDao flightDao = new FlightDao();
@@ -20,7 +19,7 @@ public class FlightService {
     }
 
     public Flight search(Flight flight) throws IOException, ClassNotFoundException {
-        return  flightDao.get(flight)
-                .orElseThrow(()->new IllegalArgumentException("flight not found"));
+        return flightDao.get(flight)
+                .orElseThrow(() -> new IllegalArgumentException("flight not found"));
     }
 }

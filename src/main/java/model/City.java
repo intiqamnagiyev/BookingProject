@@ -101,7 +101,7 @@ public enum City {
     TAMPA("TPA"),
     NUREMBERG("NUE"),
     BRISTOL("BRS");
-private String code;
+    private String code;
 
     City(String code) {
         this.code = code;
@@ -110,9 +110,10 @@ private String code;
     public String getCode() {
         return code;
     }
-    public static City randCity(){
+
+    public static City randCity() {
         City[] values = City.values();
-        return values[(int) (Math.random()*values.length)];
+        return values[(int) (Math.random() * values.length)];
     }
 
 

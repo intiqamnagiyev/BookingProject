@@ -9,9 +9,8 @@ public class Passanger implements Serializable {
     private String nameSurname;
 
     public Passanger(String name) {
-        this.nameSurname=name;
+        this.nameSurname = name;
     }
-
 
 
     @Override

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,8 +11,9 @@ public class User implements Serializable {
     private List<Booking> bookings;
 
     public User(String username, String password) {
-        this.username=username;
-        this.password=password;
+        this.username = username;
+        this.password = password;
+        this.bookings = new ArrayList<>();
     }
 
     @Override

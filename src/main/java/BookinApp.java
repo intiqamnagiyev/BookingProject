@@ -3,7 +3,6 @@ import controller.FlightController;
 import controller.UserController;
 import model.City;
 import model.Flight;
-import model.Passanger;
 import model.User;
 
 import java.io.IOException;
@@ -56,11 +55,11 @@ public class BookinApp {
     }
 
     public void run() throws IOException, ClassNotFoundException {
-     // Flight.createSchedule();
+        // Flight.createSchedule();
         Scanner scanner = new Scanner(System.in);
         boolean flag0 = true;
         while (flag0) {
-            boolean flag1=false;
+            boolean flag1 = false;
             menu0();
             int menu0item = scanner.nextInt();
             switch (menu0item) {
@@ -71,18 +70,22 @@ public class BookinApp {
                     String password = scanner.next();
                     try {
                         userController.getUser(new User(username, password));
-                        flag1=true;
+                        flag1 = true;
                     } catch (Exception e) {
                         System.out.println("user not exist, please sign up");
                         flag1 = false;
                     }
                     break;
-                case 2:System.out.println("Username:");
+                case 2:
+                    System.out.println("Username:");
                     String usernamenew = scanner.next();
                     System.out.println("password:");
                     String passwordnew = scanner.next();
-                    userController.creatNewUser(new User(usernamenew,passwordnew));break;
-                case 3:flag0=false;break;
+                    userController.creatNewUser(new User(usernamenew, passwordnew));
+                    break;
+                case 3:
+                    flag0 = false;
+                    break;
             }
 
 
