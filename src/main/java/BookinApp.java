@@ -62,36 +62,31 @@ public class BookinApp {
         while (flag0) {
             boolean flag1 = false;
             menu0();
-            int menu0item = 0;
-            try {
-                menu0item = scanner.nextInt();
-            } catch (Exception e) {
-                menu0item=0;
-                System.out.println("invalid menu num format");
-            }
+            String menu0item = scanner.next();
+
 
             switch (menu0item) {
-                case 1:
+                case "1":
                     System.out.println("Username:");
                     String username = scanner.next();
-                    System.out.println("password:");
+                    System.out.println("Password:");
                     String password = scanner.next();
                     try {
                         userController.getUser(new User(username, password));
                         flag1 = true;
                     } catch (Exception e) {
-                        System.out.println("user not exist, please sign up");
+                        System.out.println("User doesn't exist, please sign up!");
                         flag1 = false;
                     }
                     break;
-                case 2:
+                case "2":
                     System.out.println("Username:");
                     String usernamenew = scanner.next();
-                    System.out.println("password:");
+                    System.out.println("Password:");
                     String passwordnew = scanner.next();
                     userController.creatNewUser(new User(usernamenew, passwordnew));
                     break;
-                case 3:
+                case "3":
                     flag0 = false;
                     break;
                 default:
@@ -102,48 +97,47 @@ public class BookinApp {
 
 
             while (flag1) {
-
                 menu1();
-                int menuItem = scanner.nextInt();
+                String menuItem = scanner.next();
                 switch (menuItem) {
 
-                    case 1:
+                    case "1":
                         flightController.getAll();
                         break;
-                    case 2:
+                    case "2":
                         System.out.print("Enter ID of flight: ");
                         int id = scanner.nextInt();
                         flightController.getById(id);
                         break;
-                    case 3:
+                    case "3":
                         boolean flag2 = true;
                         int tickets = 0;
                         try {
                             System.out.println("Enter destination city: ");
                             String city = scanner.next().toUpperCase();
 
-                            System.out.println("Enter date:yyyy-MM-dd");
+                            System.out.println("Enter date(like YYYY-MM-DD:");
                             LocalDate date = LocalDate.parse(scanner.next());
 
                             System.out.println("Enter number of tickets: ");
                             tickets = scanner.nextInt();
                             flightController.search(new Flight(City.valueOf(city), date));
                         } catch (InputMismatchException im) {
-                            System.out.println("smthng went wrong");
+                            System.out.println("Something went wrong");
                             flag2 = false;
                         } catch (Exception ex) {
-                            System.out.println("date format is not true");
+                            System.out.println("Date format is not true!");//nese duzeldecekdim yadimdan cixdi((((((
                             flag2 = false;
                         }
 
                         while (flag2) {
                             menu2();
-                            int press = scanner.nextInt();
+                            String press = scanner.next();
                             switch (press) {
-                                case 1:
+                                case "1":
                                     bookingController.makeBooking(tickets);
                                     break;
-                                case 2:
+                                case "2":
                                     flag2 = false;
                                     break;
                                 default:
@@ -152,15 +146,15 @@ public class BookinApp {
                             }
                         }
                         break;
-                    case 4:
+                    case "4":
                         System.out.println("Enter Booking ID: ");
                         int cancelID = scanner.nextInt();
                         bookingController.cancelBooking(cancelID);
                         break;
-                    case 5:
+                    case "5":
                         bookingController.showMyBookings();
                         break;
-                    case 6:
+                    case "6":
                         Session.setUser(null);
                         flag1 = false;
                         break;

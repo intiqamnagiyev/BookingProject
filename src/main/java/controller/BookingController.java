@@ -11,13 +11,13 @@ public class BookingController {
         if (bookingService.makeBooking(tickets)) {
             System.out.println("You have made new booking!");
         } else {
-            System.out.println("Something went wrong, please try again");
+            System.out.println("Something went wrong, please try again!");
         }
     }
 
     public void showMyBookings() {
         if (bookingService.showMyBookings().isEmpty()) {
-            System.out.println("your booking list is empty");
+            System.out.println("Your booking list is empty!");
         } else {
             bookingService.showMyBookings().forEach(System.out::println);
         }

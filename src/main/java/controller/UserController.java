@@ -18,9 +18,9 @@ public class UserController {
 
     public void creatNewUser(User user) {
         if (userService.createNewUser(user)) {
-            System.out.println("succesfully signed up, please login");
+            System.out.println("Succesfully signed up, please login.");
         } else {
-            System.out.println("sign up again");
+            System.out.println("Something went wrong! Sign up again.");
         }
     }
 }

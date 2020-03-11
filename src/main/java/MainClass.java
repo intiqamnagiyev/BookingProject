@@ -8,8 +8,6 @@ public class MainClass {
         BookinApp bookinApp = new BookinApp();
       bookinApp.run();
 
-
-
     }
 
 }

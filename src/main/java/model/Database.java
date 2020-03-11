@@ -12,7 +12,7 @@ public class Database implements Serializable {
     private List<User> userlist = new ArrayList<>();
 
     public List<Flight> readFromFileFlights() throws IOException, ClassNotFoundException {
-        File file = new File("schedule.txt");
+        File file = new File("Schedule.txt");
         FileInputStream fis = new FileInputStream(file);
         ObjectInputStream ois = new ObjectInputStream(fis);
         flightList = (List<Flight>) ois.readObject();
@@ -23,7 +23,7 @@ public class Database implements Serializable {
 
     public List<Booking> readFromFileMyBookings() throws IOException, ClassNotFoundException {
 
-            File file = new File("BOOKING.txt");
+            File file = new File("Booking.txt");
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             bookingList = (List<Booking>) ois.readObject();
@@ -36,7 +36,7 @@ public class Database implements Serializable {
 
     public boolean writeToFileBooking() {
         try {
-            File file = new File("BOOKING.txt");
+            File file = new File("Booking.txt");
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(bookingList);
@@ -101,7 +101,7 @@ public class Database implements Serializable {
         } catch (Exception io) {
             io.printStackTrace();
             System.out.println(io.getMessage());
-            throw new IllegalArgumentException("something went wrong");
+            throw new IllegalArgumentException("Something went wrong!");
         }
     }
 }
