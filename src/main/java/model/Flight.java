@@ -56,7 +56,7 @@ public class Flight implements Serializable {
             fos.close();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("File cannot found");
+            throw new RuntimeException("File cannot found!");
         }
     }
 

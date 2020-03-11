@@ -10,31 +10,27 @@ public class FlightController {
 
     private FlightService flightService = new FlightService();
 
-    public void getAll()  {
+    public void getAll() {
         try {
             flightService.getAll().forEach(System.out::println);
-        }catch (Exception e){
-            System.out.println("flight list is empty");
+        } catch (Exception e) {
+            System.out.println("Flight list is empty!");
         }
     }
 
-    public void end() {
-    }
-
-    public void getById(int id)  {
+    public void getById(int id) {
         try {
             System.out.println(flightService.getById(id));
         } catch (Exception e) {
-            System.out.println("flight hasn't found");
+            System.out.println("Flight hasn't found!");
         }
     }
-
-    public void search(Flight flight) throws IOException, ClassNotFoundException {
+    public void search(Flight flight) {
         try {
             Flight search = flightService.search(flight);
             System.out.println(search);
         } catch (Exception e) {
-            System.out.println("flight hasn't fount");
+            System.out.println("Flight can't found!");
         }
 
     }
