@@ -1,10 +1,7 @@
 package services;
-
 import Dao.BookingDao;
 import model.Booking;
 import model.Session;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

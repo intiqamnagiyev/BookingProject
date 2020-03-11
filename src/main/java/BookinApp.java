@@ -3,6 +3,7 @@ import controller.FlightController;
 import controller.UserController;
 import model.City;
 import model.Flight;
+import model.Session;
 import model.User;
 
 import java.io.IOException;
@@ -153,6 +154,7 @@ public class BookinApp {
                         bookingController.showMyBookings();
                         break;
                     case 6:
+                        Session.setUser(null);
                         flag1 = false;
                         break;
 
