@@ -23,7 +23,7 @@ public class BookingController {
         }
     }
 
-    public void cancelBooking(int cancelID) throws IOException, ClassNotFoundException {
+    public void cancelBooking(int cancelID) {
         bookingService.cancelBooking(cancelID);
     }
 }

@@ -5,6 +5,7 @@ import model.Booking;
 import model.Session;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,14 +18,24 @@ public class BookingService {
     }
 
     public List<Booking> showMyBookings() {
-        return bookingDao.getAll()
-                .stream()
-                .filter(booking -> booking.getUser()
-                        .equals(Session.getUser()))
-                .collect(Collectors.toList());
+        List<Booking> collect=new ArrayList<>();
+        try {
+         collect = bookingDao.getAll()
+                    .stream()
+                    .filter(booking -> booking.getUser()
+                            .equals(Session.getUser()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.out.println("smthng went wrong");
+        }
+        return collect;
     }
 
-    public void cancelBooking(int cancelID) throws IOException, ClassNotFoundException {
-        bookingDao.delete(cancelID);
+    public void cancelBooking(int cancelID)  {
+        try {
+            bookingDao.delete(cancelID);
+        } catch (Exception e) {
+            System.out.println("smthng went wrong");
+        }
     }
 }

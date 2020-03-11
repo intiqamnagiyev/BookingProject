@@ -5,6 +5,7 @@ import model.Database;
 import model.Passanger;
 import model.Session;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +17,7 @@ public class BookingDao implements Dao<Booking> {
     private Database database = new Database();
 
     @Override
-    public List<Booking> getAll() {
+    public List<Booking> getAll() throws IOException, ClassNotFoundException {
         return database.getAllBookings();
     }
 
@@ -37,7 +38,7 @@ public class BookingDao implements Dao<Booking> {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(int id) throws IOException, ClassNotFoundException {
         List<Booking> collect = database.getAllBookings()
                 .stream().filter(booking -> booking.getId() == id)
                 .collect(Collectors.toList());

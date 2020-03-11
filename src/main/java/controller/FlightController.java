@@ -10,18 +10,22 @@ public class FlightController {
 
     private FlightService flightService = new FlightService();
 
-    public void getAll() throws IOException, ClassNotFoundException {
-        flightService.getAll().forEach(System.out::println);
+    public void getAll()  {
+        try {
+            flightService.getAll().forEach(System.out::println);
+        }catch (Exception e){
+            System.out.println("flight list is empty");
+        }
     }
 
     public void end() {
     }
 
-    public void getById(int id) throws IOException, ClassNotFoundException {
+    public void getById(int id)  {
         try {
             System.out.println(flightService.getById(id));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("flight hasn't found");
         }
     }
 

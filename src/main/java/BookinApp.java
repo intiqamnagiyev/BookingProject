@@ -54,7 +54,7 @@ public class BookinApp {
         System.out.println(sb2);
     }
 
-    public void run() throws IOException, ClassNotFoundException {
+    public void run() throws IOException {
         // Flight.createSchedule();
         Scanner scanner = new Scanner(System.in);
         boolean flag0 = true;
@@ -86,6 +86,10 @@ public class BookinApp {
                 case 3:
                     flag0 = false;
                     break;
+                default:
+                    System.out.println("Invalid menu item. Enter menu item.");
+                    break;
+
             }
 
 
