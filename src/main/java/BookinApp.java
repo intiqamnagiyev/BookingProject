@@ -62,7 +62,14 @@ public class BookinApp {
         while (flag0) {
             boolean flag1 = false;
             menu0();
-            int menu0item = scanner.nextInt();
+            int menu0item = 0;
+            try {
+                menu0item = scanner.nextInt();
+            } catch (Exception e) {
+                menu0item=0;
+                System.out.println("invalid menu num format");
+            }
+
             switch (menu0item) {
                 case 1:
                     System.out.println("Username:");
