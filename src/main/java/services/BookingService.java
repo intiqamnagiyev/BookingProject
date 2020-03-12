@@ -23,7 +23,7 @@ public class BookingService {
                             .equals(Session.getUser()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.out.println("smthng went wrong");
+            System.out.println("Something went wrong");
         }
         return collect;
     }
@@ -32,7 +32,7 @@ public class BookingService {
         try {
             bookingDao.delete(cancelID);
         } catch (Exception e) {
-            System.out.println("smthng went wrong");
+            System.out.println("Something went wrong");
         }
     }
 }
