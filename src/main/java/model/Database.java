@@ -45,7 +45,6 @@ public class Database implements Serializable {
             return false;
         }
     }
-
     public List<Flight> getAllFlights() throws IOException, ClassNotFoundException {
         if(flightList.isEmpty()){
             Flight.createSchedule();
@@ -103,4 +102,5 @@ public class Database implements Serializable {
             throw new IllegalArgumentException("Something went wrong!");
         }
     }
+
 }

@@ -12,9 +12,9 @@ public class Booking implements Serializable {
     private List<Passanger> passangerList;
     static int count = 0;
 
-    public Booking(User user, Flight flight, List<Passanger> passangerList) {
+    public Booking(int id,User user, Flight flight, List<Passanger> passangerList) {
         this.user = user;
-        this.id = ++count;
+        this.id = id;
         this.flight = flight;
         this.passangerList = passangerList;
     }
