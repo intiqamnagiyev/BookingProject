@@ -56,7 +56,6 @@ public class BookinApp {
     }
 
     public void run() throws IOException {
-        // Flight.createSchedule();
         Scanner scanner = new Scanner(System.in);
         boolean flag0 = true;
         while (flag0) {
