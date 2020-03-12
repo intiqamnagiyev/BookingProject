@@ -6,15 +6,24 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Passanger implements Serializable {
-    private String nameSurname;
+    private String name;
+    private  String surname;
 
-    public Passanger(String name) {
-        this.nameSurname = name;
+    public Passanger(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
 
     @Override
     public String toString() {
-        return String.format("Passanger:nameSurname= %s}", nameSurname);
+        return String.format(" Name:%-10s Surname:%-10s\n", name , surname);
     }
 }

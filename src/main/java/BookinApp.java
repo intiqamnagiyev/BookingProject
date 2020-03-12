@@ -55,7 +55,7 @@ public class BookinApp {
         System.out.println(sb2);
     }
 
-    public void run() throws IOException {
+    public void run() throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         boolean flag0 = true;
         while (flag0) {
@@ -117,9 +117,16 @@ public class BookinApp {
 
                             System.out.println("Enter date(like YYYY-MM-DD:");
                             LocalDate date = LocalDate.parse(scanner.next());
-
-                            System.out.println("Enter number of tickets: ");
-                            tickets = scanner.nextInt();
+                            boolean validticket=true;
+                            while (validticket) {
+                                System.out.println("Enter number of tickets: ");
+                                tickets = scanner.nextInt();
+                                if (tickets>0){
+                                    validticket=false;
+                                }else{
+                                    System.out.println("Ticket count has to be at least 1!");
+                                }
+                            }
                             flightController.search(new Flight(City.valueOf(city), date));
                         } catch (InputMismatchException im) {
                             System.out.println("Something went wrong");

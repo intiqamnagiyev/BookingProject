@@ -2,6 +2,8 @@ package services;
 import Dao.BookingDao;
 import model.Booking;
 import model.Session;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +12,7 @@ public class BookingService {
     private BookingDao bookingDao = new BookingDao();
 
 
-    public boolean makeBooking(int tickets) {
+    public boolean makeBooking(int tickets) throws IOException, ClassNotFoundException {
         return bookingDao.create(bookingDao.makeBooking(tickets));
     }
 
@@ -19,8 +21,7 @@ public class BookingService {
         try {
          collect = bookingDao.getAll()
                     .stream()
-                    .filter(booking -> booking.getUser()
-                            .equals(Session.getUser()))
+                    .filter(booking -> booking.getUser().equals(Session.getUser()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             System.out.println("Something went wrong");
