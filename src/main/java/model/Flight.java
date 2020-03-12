@@ -31,7 +31,6 @@ public class Flight implements Serializable {
     }
 
     public static void createSchedule(){
-        System.out.println("crtschedule");
         for (int i = 0; i < 30; i++) {
             Flight flight = new Flight(
                     ++count,
@@ -60,8 +59,6 @@ public class Flight implements Serializable {
             throw new RuntimeException("File cannot found!");
         }
     }
-
-
 
     public Flight(City to, LocalDate date) {
         this.to = to;

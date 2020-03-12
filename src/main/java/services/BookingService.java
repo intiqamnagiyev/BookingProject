@@ -26,7 +26,7 @@ public class BookingService {
                     .filter(booking -> booking.getUser().equals(Session.getUser()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.out.println("");
+            System.out.println("error occurred while reading from file");
         }
         return collect;
     }

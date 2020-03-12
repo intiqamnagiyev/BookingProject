@@ -1,22 +1,20 @@
 package model;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class Booking implements Serializable {
     private User user;
     private int id;
     private Flight flight;
-    private List<Passanger> passangerList;
-    static int count = 0;
+    private List<Passanger> passengerList;
 
-    public Booking(int id,User user, Flight flight, List<Passanger> passangerList) {
+
+    public Booking(int id,User user, Flight flight, List<Passanger> passengerList) {
         this.user = user;
         this.id = id;
         this.flight = flight;
-        this.passangerList = passangerList;
+        this.passengerList = passengerList;
     }
 
     public int getId() {
@@ -32,8 +30,8 @@ public class Booking implements Serializable {
         return flight;
     }
 
-    public List<Passanger> getPassangerList() {
-        return passangerList;
+    public List<Passanger> getPassengerList() {
+        return passengerList;
     }
 
     @Override

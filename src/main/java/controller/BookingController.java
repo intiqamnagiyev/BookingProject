@@ -28,10 +28,10 @@ public class BookingController {
             System.out.println("Your booking list is empty!");
         } else {
         bookingService.showMyBookings().stream()
-                    .collect(Collectors.toMap(booking -> booking, Booking::getPassangerList))
+                    .collect(Collectors.toMap(booking -> booking, Booking::getPassengerList))
                      .keySet().forEach(booking -> {
                  System.out.printf("Booking ID:%-3d Flight ID:%-12s\n", booking.getId(),booking.getFlight());
-                 booking.getPassangerList()
+                 booking.getPassengerList()
                          .forEach(passanger ->
                                  System.out.printf("Name=%-10s, Surname=%-10s\n",
                                          passanger.getName(),passanger.getSurname()));
