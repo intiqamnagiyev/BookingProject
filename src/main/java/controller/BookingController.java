@@ -1,20 +1,17 @@
 package controller;
 
 import model.Booking;
-import model.Passanger;
 import services.BookingService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import java.util.stream.Collectors;
 
 public class BookingController {
     private BookingService bookingService = new BookingService();
 
     public void makeBooking(int tickets) throws IOException, ClassNotFoundException {
+
         if (bookingService.makeBooking(tickets)) {
             System.out.println("You have made new booking!");
         } else {
