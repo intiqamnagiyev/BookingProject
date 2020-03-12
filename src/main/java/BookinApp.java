@@ -1,10 +1,7 @@
 import controller.BookingController;
 import controller.FlightController;
 import controller.UserController;
-import model.City;
-import model.Flight;
-import model.Session;
-import model.User;
+import model.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -16,6 +13,7 @@ public class BookinApp {
     private FlightController flightController = new FlightController();
     private BookingController bookingController = new BookingController();
     private UserController userController = new UserController();
+    Inputs inputs = new Inputs();
 
     void menu1() {
         StringBuilder sb = new StringBuilder();
@@ -66,12 +64,8 @@ public class BookinApp {
 
             switch (menu0item) {
                 case "1":
-                    System.out.println("Username:");
-                    String username = scanner.next();
-                    System.out.println("Password:");
-                    String password = scanner.next();
                     try {
-                        userController.getUser(new User(username, password));
+                        userController.getUser(new User(inputs.inputUsername(), inputs.inputPssword()));
                         flag1 = true;
                     } catch (Exception e) {
                         System.out.println("User doesn't exist, please sign up!");
@@ -79,11 +73,7 @@ public class BookinApp {
                     }
                     break;
                 case "2":
-                    System.out.println("Username:");
-                    String usernamenew = scanner.next();
-                    System.out.println("Password:");
-                    String passwordnew = scanner.next();
-                    userController.creatNewUser(new User(usernamenew, passwordnew));
+                    userController.creatNewUser(new User(inputs.inputUsername(), inputs.inputPssword()));
                     break;
                 case "3":
                     flag0 = false;
@@ -104,23 +94,17 @@ public class BookinApp {
                         flightController.getAll();
                         break;
                     case "2":
-                        System.out.print("Enter ID of flight: ");
-                        int id = scanner.nextInt();
-                        flightController.getById(id);
+                        flightController.getById(inputs.inputId());
                         break;
                     case "3":
                         boolean flag2 = true;
                         int tickets = 0;
                         try {
-                            System.out.println("Enter destination city: ");
-                            String city = scanner.next().toUpperCase();
-
-                            System.out.println("Enter date(like YYYY-MM-DD:");
-                            LocalDate date = LocalDate.parse(scanner.next());
+                            String city = inputs.inputCity();
+                            LocalDate date = inputs.inputDate();
                             boolean validticket=true;
                             while (validticket) {
-                                System.out.println("Enter number of tickets: ");
-                                tickets = scanner.nextInt();
+                                tickets = inputs.inputTickets();
                                 if (tickets>0){
                                     validticket=false;
                                 }else{
@@ -132,7 +116,7 @@ public class BookinApp {
                             System.out.println("Something went wrong");
                             flag2 = false;
                         } catch (Exception ex) {
-                            System.out.println("Date format is not true!");//nese duzeldecekdim yadimdan cixdi((((((
+                            System.out.println("Date format is not true!");
                             flag2 = false;
                         }
 
@@ -153,9 +137,7 @@ public class BookinApp {
                         }
                         break;
                     case "4":
-                        System.out.println("Enter Booking ID: ");
-                        int cancelID = scanner.nextInt();
-                        bookingController.cancelBooking(cancelID);
+                        bookingController.cancelBooking(inputs.inputCancelId());
                         break;
                     case "5":
                         bookingController.showMyBookings();
