@@ -49,7 +49,7 @@ public class MenuOperation {
         flightController.getById(id);
     }
 
-    public boolean searchFligtsForBooking() {
+    public boolean searchFlightsForBooking() {
         try {
             System.out.println("Enter destination city: ");
             String city = scanner.next().toUpperCase();

@@ -41,7 +41,7 @@ public class BookingApp {
                         menuOperation.getFlightById();
                         break;
                     case "3":
-                        boolean flag2 = menuOperation.searchFligtsForBooking();
+                        boolean flag2 = menuOperation.searchFlightsForBooking();
                         while (flag2) {
                             showMenu.menu2();
                             String press = scanner.next();
