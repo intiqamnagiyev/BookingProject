@@ -2,7 +2,6 @@
 import menu.MenuOperation;
 import menu.ShowMenu;
 import model.Session;
-
 import java.util.Scanner;
 
 public class BookingApp {
