@@ -26,31 +26,17 @@ public class BookingController {
         if (bookingService.showMyBookings().isEmpty()) {
             System.out.println("Your booking list is empty!");
         } else {
-//            bookingService.showMyBookings().forEach(System.out::println);
-           /* bookingService.showMyBookings().forEach(booking ->
-                    booking.getPassangerList().stream().forEach(passanger ->
-                            System.out.printf("Booking ID:%-3d Flight:%s \nPassengerlist:\n Name: %-10s Surname:%-10s\n ",
-                                    booking.getId(), booking.getFlight(),passanger.getName(),passanger.getSurname()))
-                    );*/
-            List<Booking> bookings = bookingService.showMyBookings();
+        bookingService.showMyBookings().stream()
+                    .collect(Collectors.toMap(booking -> booking, Booking::getPassangerList))
+                     .keySet().forEach(booking -> {
+                 System.out.printf("Booking ID:%-3d Flight ID:%-12s\n", booking.getId(),booking.getFlight());
+                 booking.getPassangerList()
+                         .forEach(passanger ->
+                                 System.out.printf("Name=%-10s, Surname=%-10s\n",
+                                         passanger.getName(),passanger.getSurname()));
+                     }
+             );
 
-            Map<Booking, List<Passanger>> collect = bookingService.showMyBookings()
-                    .stream().collect(Collectors.toMap(booking -> booking, Booking::getPassangerList));
-            System.out.println("mapss"+collect);
-                       // collect.keySet().stream().forEach(k-> System.out.printf("Booking ID:%-3d Flight:%s \nPassengerlist:%s\n",k.getId(),k.getFlight(),k.getPassangerList()));
-
-            int term = 0;
-            /*for(Passanger passanger : collect) {
-                System.out.printf("%-2d Name:%-10s Surname:%-14s \n" , ++term,passanger.getName(),passanger.getSurname());
-            }*/
-
-            for (Booking booking:bookings){
-                System.out.printf("Booking ID:%-3d Flight:%s \nPassengerlist:\n",booking.getId(), booking.getFlight());
-                for (Passanger passanger:collect.getOrDefault(booking,new ArrayList<>())){
-                    System.out.printf("Name: %-10s Surname:%-10s\n ",
-                                                            passanger.getName(),passanger.getSurname());
-                }
-            }
         }
     }
 
