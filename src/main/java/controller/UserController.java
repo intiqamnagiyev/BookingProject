@@ -20,7 +20,7 @@ public class UserController {
         if (userService.createNewUser(user)) {
             System.out.println("Succesfully signed up, please login.");
         } else {
-            System.out.println("Something went wrong! Sign up again.");
+            System.out.println("Something went wrong! Sign up again.");//he onda bele yazinki basa dusekde)
         }
     }
 }

@@ -22,15 +22,12 @@ public class Database implements Serializable {
     }
 
     public List<Booking> readFromFileMyBookings() throws IOException, ClassNotFoundException {
-
             File file = new File("Booking.txt");
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             bookingList = (List<Booking>) ois.readObject();
             ois.close();
             fis.close();
-
-
         return bookingList;
     }
 
@@ -44,14 +41,14 @@ public class Database implements Serializable {
             fos.close();
             return true;
         } catch (Exception io) {
-            io.printStackTrace();
             System.out.println(io.getMessage());
-            throw new RuntimeException();
+            return false;
         }
     }
-
     public List<Flight> getAllFlights() throws IOException, ClassNotFoundException {
-        Flight.createSchedule();
+        if(flightList.isEmpty()){
+            Flight.createSchedule();
+        }
         flightList=readFromFileFlights();
         return flightList;
     }
@@ -105,4 +102,5 @@ public class Database implements Serializable {
             throw new IllegalArgumentException("Something went wrong!");
         }
     }
+
 }

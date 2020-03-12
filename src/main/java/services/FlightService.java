@@ -20,6 +20,6 @@ public class FlightService {
 
     public Flight search(Flight flight) throws IOException, ClassNotFoundException {
         return flightDao.get(flight)
-                .orElseThrow(() -> new IllegalArgumentException("flight not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Flight can't found!"));
     }
 }

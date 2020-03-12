@@ -54,16 +54,24 @@ public class BookingDao implements Dao<Booking> {
     }
 
 
-    public Booking makeBooking(int tickets) {
+    public Booking makeBooking(int tickets,int flightid) throws IOException, ClassNotFoundException {
         List<Passanger> passengers = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter flight ID: ");
         int id = scanner.nextInt();
         for (int i = 0; i < tickets; i++) {
-            System.out.println("Enter Passenger name and surname: ");
+            System.out.println("Enter Passenger name : ");
             String name = scanner.next();
-            passengers.add(new Passanger(name));
+            System.out.println("Enter Passenger Surname : ");
+            String surname = scanner.next();
+            passengers.add(new Passanger(name,surname));
         }
-        return new Booking(Session.getUser(), id, passengers);
+
+        return new Booking(++flightid,Session.getUser(),
+                database.getAllFlights().stream()
+                        .filter(flight -> flight.getId()==id)
+                        .findAny()
+                        .orElseThrow(RuntimeException::new),
+                passengers);
     }
 }
