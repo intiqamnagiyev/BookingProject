@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class MainClass {
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        BookinApp bookinApp = new BookinApp();
-      bookinApp.run();
+    public static void main(String[] args)  {
+        BookingApp bookingApp = new BookingApp();
+      bookingApp.run();
     }
 
 }

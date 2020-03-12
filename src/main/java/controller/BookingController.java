@@ -10,12 +10,16 @@ import java.util.stream.Collectors;
 public class BookingController {
     private BookingService bookingService = new BookingService();
 
-    public void makeBooking(int tickets) throws IOException, ClassNotFoundException {
+    public void makeBooking(int tickets)  {
 
-        if (bookingService.makeBooking(tickets)) {
-            System.out.println("You have made new booking!");
-        } else {
-            System.out.println("Something went wrong, please try again!");
+        try {
+            if (bookingService.makeBooking(tickets)) {
+                System.out.println("You have made new booking!");
+            } else {
+                System.out.println("Something went wrong, please try again!");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error occured while create booking");
         }
     }
 
