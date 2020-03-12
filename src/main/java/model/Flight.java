@@ -31,6 +31,7 @@ public class Flight implements Serializable {
     }
 
     public static void createSchedule(){
+        System.out.println("crtschedule");
         for (int i = 0; i < 30; i++) {
             Flight flight = new Flight(
                     ++count,

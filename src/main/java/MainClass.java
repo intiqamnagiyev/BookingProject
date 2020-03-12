@@ -1,11 +1,10 @@
 
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class MainClass {
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        BookinApp bookinApp = new BookinApp();
+    public static void main(String[] args) throws IOException {
+        BookinApp2 bookinApp = new BookinApp2();
       bookinApp.run();
 
     }

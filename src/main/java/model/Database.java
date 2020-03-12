@@ -51,6 +51,7 @@ public class Database implements Serializable {
     }
 
     public List<Flight> getAllFlights() throws IOException, ClassNotFoundException {
+        Flight.createSchedule();
         flightList=readFromFileFlights();
         return flightList;
     }
