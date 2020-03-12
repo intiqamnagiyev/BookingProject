@@ -44,7 +44,6 @@ public class BookingDao implements Dao<Booking> {
                 .collect(Collectors.toList());
         database.getBookingList().removeAll(collect);
         return database.writeToFileBooking();
-
     }
 
     @Override
@@ -54,7 +53,8 @@ public class BookingDao implements Dao<Booking> {
     }
 
 
-    public Booking makeBooking(int tickets,int flightid) throws IOException, ClassNotFoundException {
+    public Booking makeBooking(int tickets,int flightId) throws IOException, ClassNotFoundException {
+
         List<Passanger> passengers = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter flight ID: ");
@@ -67,7 +67,7 @@ public class BookingDao implements Dao<Booking> {
             passengers.add(new Passanger(name,surname));
         }
 
-        return new Booking(++flightid,Session.getUser(),
+        return new Booking(++flightId,Session.getUser(),
                 database.getAllFlights().stream()
                         .filter(flight -> flight.getId()==id)
                         .findAny()
