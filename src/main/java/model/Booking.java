@@ -8,7 +8,6 @@ public class Booking implements Serializable {
     private int id;
     private Flight flight;
     private List<Passenger> passengerList;
-    static int count = 0;
 
     public Booking(int id,User user, Flight flight, List<Passenger> passengerList) {
         this.user = user;

@@ -1,4 +1,5 @@
 package services;
+
 import Dao.BookingDao;
 import model.Booking;
 import model.Passenger;
@@ -14,36 +15,36 @@ public class BookingService {
     private BookingDao bookingDao = new BookingDao();
 
 
-    public boolean makeBooking( int id, List<Passenger> passengers) throws IOException, ClassNotFoundException {
+    public boolean makeBooking(int id, List<Passenger> passengers) throws IOException, ClassNotFoundException {
 
-        return bookingDao.create(bookingDao.makeBooking(getLastBookingId(),id,passengers));
+        return bookingDao.create(bookingDao.makeBooking(getLastBookingId(), id, passengers));
     }
 
     public List<Booking> showMyBookings() {
-        List<Booking> collect=new ArrayList<>();
+        List<Booking> collect = new ArrayList<>();
         try {
-         collect = bookingDao.getAll()
+            collect = bookingDao.getAll()
                     .stream()
                     .filter(booking -> booking.getUser().equals(Session.getUser()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.out.println("");
+            System.out.println();
         }
         return collect;
     }
 
-    public void cancelBooking(int cancelID)  {
+    public void cancelBooking(int cancelID) {
         try {
             bookingDao.delete(cancelID);
         } catch (Exception e) {
             System.out.println("Something went wrong");
         }
     }
-    public int getLastBookingId()  {
+
+    public int getLastBookingId() {
         return showMyBookings().stream()
                 .max(Comparator.comparingInt(Booking::getId))
                 .map(Booking::getId).orElse(0);
-
 
 
     }

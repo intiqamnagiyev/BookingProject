@@ -1,15 +1,15 @@
 package model;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Database implements Serializable {
 
-
-    private List<Flight> flightList = new ArrayList<>();
-    private List<Booking> bookingList = new ArrayList<>();
-    private List<User> userlist = new ArrayList<>();
+    private static List<Flight> flightList = new ArrayList<>();
+    private static List<Booking> bookingList = new ArrayList<>();
+    private static List<User> users = new ArrayList<>();
 
     public List<Flight> readFromFileFlights() throws IOException, ClassNotFoundException {
         File file = new File("Schedule.txt");
@@ -58,7 +58,7 @@ public class Database implements Serializable {
         return bookingList;
     }
     public List<User> getUserlist() {
-        return userlist;
+        return users;
     }
 
 
@@ -80,11 +80,11 @@ public class Database implements Serializable {
             File file = new File("Users.txt");
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            userlist = (List<User>) ois.readObject();
+            users = (List<User>) ois.readObject();
         } catch (Exception e) {
             throw new RuntimeException();
         }
-        return userlist;
+        return users;
     }
 
     public boolean writeToFileUsers() {
@@ -92,7 +92,7 @@ public class Database implements Serializable {
             File file = new File("Users.txt");
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(userlist);
+            oos.writeObject(users);
             oos.close();
             fos.close();
             return true;

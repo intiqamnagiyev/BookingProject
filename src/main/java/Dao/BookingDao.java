@@ -1,6 +1,9 @@
 package Dao;
 
-import model.*;
+import model.Booking;
+import model.Database;
+import model.Passenger;
+import model.Session;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,9 +11,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class BookingDao implements Dao<Booking> {
-
     private Database database = new Database();
-    private Inputs inputs = new Inputs();
 
     @Override
     public List<Booking> getAll() throws IOException, ClassNotFoundException {
@@ -45,16 +46,15 @@ public class BookingDao implements Dao<Booking> {
 
     @Override
     public Booking update(Booking booking) {
-
         return null;
     }
 
 
-    public Booking makeBooking(int lastBookingId, int reqFlId,List<Passenger> passengers) throws IOException, ClassNotFoundException {
+    public Booking makeBooking(int lastBookingId, int reqFlId, List<Passenger> passengers) throws IOException, ClassNotFoundException {
 
-        return new Booking(++lastBookingId,Session.getUser(),
+        return new Booking(++lastBookingId, Session.getUser(),
                 database.getAllFlights().stream()
-                        .filter(flight -> flight.getId()==reqFlId)
+                        .filter(flight -> flight.getId() == reqFlId)
                         .findAny()
                         .orElseThrow(RuntimeException::new),
                 passengers);

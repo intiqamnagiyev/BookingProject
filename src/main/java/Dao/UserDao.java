@@ -21,7 +21,11 @@ public class UserDao implements Dao<User> {
 
     @Override
     public Optional<User> get(User user) {
-        return database.getAllUsers().stream().filter(u -> u.equals(user)).findAny();
+        return database
+                .getAllUsers()
+                .stream()
+                .filter(u -> u.equals(user))
+                .findAny();
 
     }
 
