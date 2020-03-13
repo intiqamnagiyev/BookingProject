@@ -1,6 +1,9 @@
 package Dao;
 
-import model.*;
+import model.Booking;
+import model.Database;
+import model.Passenger;
+import model.Session;
 
 import java.io.IOException;
 import java.util.List;
@@ -43,7 +46,6 @@ public class BookingDao implements Dao<Booking> {
 
     @Override
     public Booking update(Booking booking) {
-
         return null;
     }
 
