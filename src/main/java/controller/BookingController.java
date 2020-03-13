@@ -30,10 +30,10 @@ public class BookingController {
         bookingService.showMyBookings().stream()
                     .collect(Collectors.toMap(booking -> booking, Booking::getPassangerList))
                      .keySet().forEach(booking -> {
-                 System.out.printf("Booking ID:%-3d Flight ID:%-12s\n", booking.getId(),booking.getFlight());
+                 System.out.printf("Booking ID:%-3d Flight ID:%-12s\nPassenger List :\n -------------------------------------\n", booking.getId(),booking.getFlight());
                  booking.getPassangerList()
                          .forEach(passanger ->
-                                 System.out.printf("Name=%-10s, Surname=%-10s\n",
+                                 System.out.printf("|Name=%-10s| Surname=%-10s|\n-------------------------------------\n",
                                          passanger.getName(),passanger.getSurname()));
                      }
              );

@@ -1,9 +1,6 @@
 package Dao;
 
-import model.Booking;
-import model.Database;
-import model.Passanger;
-import model.Session;
+import model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +12,7 @@ import java.util.stream.Collectors;
 public class BookingDao implements Dao<Booking> {
 
     private Database database = new Database();
+    private Inputs inputs = new Inputs();
 
     @Override
     public List<Booking> getAll() throws IOException, ClassNotFoundException {
@@ -56,17 +54,10 @@ public class BookingDao implements Dao<Booking> {
 
     public Booking makeBooking(int tickets,int flightid) throws IOException, ClassNotFoundException {
         List<Passanger> passengers = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter flight ID: ");
-        int id = scanner.nextInt();
+        int id = inputs.inputId();
         for (int i = 0; i < tickets; i++) {
-            System.out.println("Enter Passenger name : ");
-            String name = scanner.next();
-            System.out.println("Enter Passenger Surname : ");
-            String surname = scanner.next();
-            passengers.add(new Passanger(name,surname));
+            passengers.add(new Passanger(inputs.inputPassengerName(),inputs.inputPassengerSurname()));
         }
-
         return new Booking(++flightid,Session.getUser(),
                 database.getAllFlights().stream()
                         .filter(flight -> flight.getId()==id)
