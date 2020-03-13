@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserServiceTest {
 
     @Test
-    void getUser() {
+    void testGetUser() {
     }
 
     @Test
-    void createNewUser() {
+    void testCreateNewUser() {
     }
 }

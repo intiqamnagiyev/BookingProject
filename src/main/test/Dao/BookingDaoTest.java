@@ -7,23 +7,23 @@ import static org.junit.jupiter.api.Assertions.*;
 class BookingDaoTest {
 
     @Test
-    void getAll() {
+    void testGetAll() {
     }
 
     @Test
-    void get() {
+    void testGet() {
     }
 
     @Test
-    void getById() {
+    void testGetById() {
     }
 
     @Test
-    void create() {
+    void testCreate() {
     }
 
     @Test
-    void delete() {
+    void testDelete() {
     }
 
     @Test
