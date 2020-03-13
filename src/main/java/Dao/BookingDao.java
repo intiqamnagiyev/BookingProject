@@ -3,16 +3,12 @@ package Dao;
 import model.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class BookingDao implements Dao<Booking> {
-
     private Database database = new Database();
-    private Inputs inputs = new Inputs();
 
     @Override
     public List<Booking> getAll() throws IOException, ClassNotFoundException {
@@ -52,15 +48,11 @@ public class BookingDao implements Dao<Booking> {
     }
 
 
-    public Booking makeBooking(int tickets,int flightid) throws IOException, ClassNotFoundException {
-        List<Passanger> passengers = new ArrayList<>();
-        int id = inputs.inputId();
-        for (int i = 0; i < tickets; i++) {
-            passengers.add(new Passanger(inputs.inputPassengerName(),inputs.inputPassengerSurname()));
-        }
-        return new Booking(++flightid,Session.getUser(),
+    public Booking makeBooking(int lastBookingId, int reqFlId,List<Passenger> passengers) throws IOException, ClassNotFoundException {
+
+        return new Booking(++lastBookingId,Session.getUser(),
                 database.getAllFlights().stream()
-                        .filter(flight -> flight.getId()==id)
+                        .filter(flight -> flight.getId()==reqFlId)
                         .findAny()
                         .orElseThrow(RuntimeException::new),
                 passengers);

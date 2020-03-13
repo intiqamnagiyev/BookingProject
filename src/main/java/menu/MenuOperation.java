@@ -3,14 +3,11 @@ package menu;
 import controller.BookingController;
 import controller.FlightController;
 import controller.UserController;
-import model.City;
-import model.Flight;
-import model.Inputs;
-import model.User;
+import model.*;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuOperation {
     private BookingController bookingController = new BookingController();
@@ -40,7 +37,7 @@ public class MenuOperation {
         flightController.getById(inputs.inputId());
     }
 
-    public boolean searchFligtsForBooking() {
+    public boolean searchFlightsForBooking() {
         try {
             flightController.search(new Flight(City.valueOf(inputs.inputCity()), inputs.inputDate()));
             return true;
@@ -61,7 +58,12 @@ public class MenuOperation {
         while (validate) {
             int tickets = inputs.inputTickets();
             if (tickets > 0) {
-                bookingController.makeBooking(tickets);
+                List<Passenger> passengers = new ArrayList<>();
+                int id = inputs.inputId();
+                for (int i = 0; i < tickets; i++) {
+                    passengers.add(new Passenger(inputs.inputPassengerName(), inputs.inputPassengerSurname()));
+                }
+                bookingController.makeBooking(id, passengers);
                 validate = false;
             } else {
                 System.out.println("Ticket count has to be at least 1!");
@@ -75,5 +77,17 @@ public class MenuOperation {
 
     public void showMyBookings() {
         bookingController.showMyBookings();
+    }
+
+    public void exit() {
+        Session.setUser(null);
+    }
+
+    public boolean exitMenu0() {
+        return false;
+    }
+
+    public void invalidMenuItem() {
+        System.out.println("invalid Menu Item");
     }
 }

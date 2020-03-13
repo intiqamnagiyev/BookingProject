@@ -1,15 +1,12 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
-public class Passanger implements Serializable {
+public class Passenger implements Serializable {
     private String name;
     private  String surname;
 
-    public Passanger(String name, String surname) {
+    public Passenger(String name, String surname) {
         this.name = name;
         this.surname = surname;
     }

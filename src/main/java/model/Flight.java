@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Flight implements Serializable {
     private int id;
@@ -85,21 +84,4 @@ public class Flight implements Serializable {
         return String.format("ID:%-4d  Fly from   %-12s  (%-4s) to %-12s  (%-4s)  on day: %-10s  at: %-10s  there are only %d seats", id, from.name(), from.getCode(), to.name(), to.getCode(), date.toString(), time.toString(), seats);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Flight flight = (Flight) o;
-        return id == flight.id &&
-                seats == flight.seats &&
-                from == flight.from &&
-                to == flight.to &&
-                Objects.equals(date, flight.date) &&
-                Objects.equals(time, flight.time);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, from, to, date, time, seats);
-    }
 }
