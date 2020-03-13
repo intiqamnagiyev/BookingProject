@@ -50,11 +50,11 @@ public class BookingDao implements Dao<Booking> {
     }
 
 
-    public Booking makeBooking(int lastBookingId, int reqFlId,List<Passenger> passengers) throws IOException, ClassNotFoundException {
+    public Booking makeBooking(int lastBookingId, int reqFlId, List<Passenger> passengers) throws IOException, ClassNotFoundException {
 
-        return new Booking(++lastBookingId,Session.getUser(),
+        return new Booking(++lastBookingId, Session.getUser(),
                 database.getAllFlights().stream()
-                        .filter(flight -> flight.getId()==reqFlId)
+                        .filter(flight -> flight.getId() == reqFlId)
                         .findAny()
                         .orElseThrow(RuntimeException::new),
                 passengers);

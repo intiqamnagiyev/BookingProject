@@ -1,11 +1,11 @@
 package model;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Database implements Serializable {
-
 
     private static List<Flight> flightList = new ArrayList<>();
     private static List<Booking> bookingList = new ArrayList<>();
