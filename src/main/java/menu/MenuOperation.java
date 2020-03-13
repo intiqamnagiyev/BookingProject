@@ -63,7 +63,6 @@ public class MenuOperation {
                 for (int i = 0; i < tickets; i++) {
                     passengers.add(new Passenger(inputs.inputPassengerName(), inputs.inputPassengerSurname()));
                 }
-
                 bookingController.makeBooking(id, passengers);
                 validate = false;
             } else {
