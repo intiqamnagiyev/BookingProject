@@ -4,6 +4,8 @@ import model.Flight;
 
 import services.FlightService;
 
+import java.io.IOException;
+
 public class FlightController {
 
     private FlightService flightService = new FlightService();

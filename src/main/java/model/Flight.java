@@ -60,6 +60,8 @@ public class Flight implements Serializable {
         }
     }
 
+
+
     public Flight(City to, LocalDate date) {
         this.to = to;
         this.date = date;

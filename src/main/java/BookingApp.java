@@ -1,7 +1,6 @@
 
 import menu.MenuOperation;
 import menu.ShowMenu;
-import model.Session;
 
 import java.util.Scanner;
 
@@ -24,17 +23,20 @@ public class BookingApp {
                     menuOperation.createNewUser();
                     break;
                 case "3":
-                    flag0 = false;
+                    flag0 = menuOperation.exitMenu0();
                     break;
                 default:
-                    System.out.println("Invalid menu item. Enter menu item.");
+                    menuOperation.invalidMenuItem();
                     break;
             }
             while (flag1) {
+
                 showMenu.menu1();
                 String menuItem = scanner.next();
+
                 switch (menuItem) {
                     case "1":
+
                         menuOperation.getAllFlights();
                         break;
                     case "2":
@@ -53,7 +55,7 @@ public class BookingApp {
                                     flag2 = false;
                                     break;
                                 default:
-                                    System.out.println("Invalid menu item. Enter menu item.");
+                                    menuOperation.invalidMenuItem();
                                     break;
                             }
                         }
@@ -65,11 +67,11 @@ public class BookingApp {
                         menuOperation.showMyBookings();
                         break;
                     case "6":
-                        Session.setUser(null);
+                        menuOperation.exit();
                         flag1 = false;
                         break;
                     default:
-                        System.out.println("Invalid menu item!");
+                        menuOperation.invalidMenuItem();
                         break;
                 }
             }

@@ -11,7 +11,7 @@ public interface Dao<A> {
 
     Optional<A> getById(int id) throws IOException, ClassNotFoundException;
 
-    boolean create(A a) throws IOException, ClassNotFoundException;
+    boolean create(A a);
 
     boolean delete(int id) throws IOException, ClassNotFoundException;
 

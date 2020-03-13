@@ -1,25 +1,27 @@
 package controller;
 
 import model.Booking;
+import model.Passenger;
 import services.BookingService;
 
 import java.io.IOException;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookingController {
     private BookingService bookingService = new BookingService();
 
-    public void makeBooking(int tickets)  {
+    public void makeBooking(int flightId, List<Passenger> passengers)  {
 
         try {
-            if (bookingService.makeBooking(tickets)) {
+            if (bookingService.makeBooking(flightId,passengers)) {
                 System.out.println("You have made new booking!");
             } else {
                 System.out.println("Something went wrong, please try again!");
             }
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error occured while create booking");
+            System.out.println("Error occurred while create booking");
         }
     }
 
@@ -30,11 +32,11 @@ public class BookingController {
         bookingService.showMyBookings().stream()
                     .collect(Collectors.toMap(booking -> booking, Booking::getPassengerList))
                      .keySet().forEach(booking -> {
-                 System.out.printf("Booking ID:%-3d Flight ID:%-12s\n", booking.getId(),booking.getFlight());
+                 System.out.printf("Booking ID:%-3d Flight ID:%-12s\nPassenger List :\n -------------------------------------\n", booking.getId(),booking.getFlight());
                  booking.getPassengerList()
-                         .forEach(passanger ->
-                                 System.out.printf("Name=%-10s, Surname=%-10s\n",
-                                         passanger.getName(),passanger.getSurname()));
+                         .forEach(passenger ->
+                                 System.out.printf("|Name=%-10s| Surname=%-10s|\n-------------------------------------\n",
+                                         passenger.getName(),passenger.getSurname()));
                      }
              );
 

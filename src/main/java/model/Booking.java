@@ -7,10 +7,10 @@ public class Booking implements Serializable {
     private User user;
     private int id;
     private Flight flight;
-    private List<Passanger> passengerList;
+    private List<Passenger> passengerList;
+    static int count = 0;
 
-
-    public Booking(int id,User user, Flight flight, List<Passanger> passengerList) {
+    public Booking(int id,User user, Flight flight, List<Passenger> passengerList) {
         this.user = user;
         this.id = id;
         this.flight = flight;
@@ -30,7 +30,7 @@ public class Booking implements Serializable {
         return flight;
     }
 
-    public List<Passanger> getPassengerList() {
+    public List<Passenger> getPassengerList() {
         return passengerList;
     }
 

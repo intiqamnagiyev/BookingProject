@@ -1,6 +1,7 @@
 package services;
 import Dao.BookingDao;
 import model.Booking;
+import model.Passenger;
 import model.Session;
 
 import java.io.IOException;
@@ -13,9 +14,9 @@ public class BookingService {
     private BookingDao bookingDao = new BookingDao();
 
 
-    public boolean makeBooking(int tickets) throws IOException, ClassNotFoundException {
+    public boolean makeBooking( int id, List<Passenger> passengers) throws IOException, ClassNotFoundException {
 
-        return bookingDao.create(bookingDao.makeBooking(tickets,getLastBookingId()));
+        return bookingDao.create(bookingDao.makeBooking(getLastBookingId(),id,passengers));
     }
 
     public List<Booking> showMyBookings() {
@@ -26,7 +27,7 @@ public class BookingService {
                     .filter(booking -> booking.getUser().equals(Session.getUser()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            System.out.println(" ");
+            System.out.println("");
         }
         return collect;
     }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.stream.Collectors.toList;
 
 public class FlightDao implements Dao<Flight> {
     private Database database = new Database();
