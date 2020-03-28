@@ -1,7 +1,6 @@
 package controller;
 
 import model.Flight;
-
 import services.FlightService;
 
 public class FlightController {
@@ -16,11 +15,12 @@ public class FlightController {
         }
     }
 
-    public void getById(int id) {
+    public Flight getById(int id) {
         try {
-            System.out.println(flightService.getById(id));
+            return flightService.getById(id);
         } catch (Exception e) {
             System.out.println("Flight hasn't found!");
+            return new Flight();
         }
     }
     public void search(Flight flight) {
@@ -31,5 +31,9 @@ public class FlightController {
             System.out.println("Flight can't found!");
         }
 
+    }
+
+    public void loadData() {
+        flightService.loadData();
     }
 }

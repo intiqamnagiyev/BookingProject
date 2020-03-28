@@ -1,6 +1,6 @@
 package services;
 
-import Dao.UserDao;
+import dao.UserDao;
 import model.User;
 
 public class UserService {
@@ -12,6 +12,10 @@ public class UserService {
     }
 
     public boolean createNewUser(User user) {
-        return userDao.create(user);
+        return userDao.save(user);
+    }
+
+    public void loadData() {
+        userDao.loadData();
     }
 }

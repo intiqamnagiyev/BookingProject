@@ -1,15 +1,16 @@
 package services;
 
-import Dao.FlightDao;
+import dao.Dao;
+import dao.FlightDao;
 import model.Flight;
 
 import java.io.IOException;
 import java.util.List;
 
 public class FlightService {
-    private FlightDao flightDao = new FlightDao();
+    private Dao<Flight> flightDao = new FlightDao();
 
-    public List<Flight> getAll() throws IOException, ClassNotFoundException {
+    public List<Flight> getAll()  {
         return flightDao.getAll();
     }
 
@@ -21,5 +22,9 @@ public class FlightService {
     public Flight search(Flight flight) throws IOException, ClassNotFoundException {
         return flightDao.get(flight)
                 .orElseThrow(() -> new IllegalArgumentException("Flight can't found!"));
+    }
+
+    public void loadData() {
+        flightDao.loadData();
     }
 }

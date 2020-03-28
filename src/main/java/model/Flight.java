@@ -13,9 +13,12 @@ public class Flight implements Serializable {
     private City to;
     private LocalDate date;
     private LocalTime time;
-    private int seats;
+
+
+
+    private  int seats;
     private static int count = 0;
-    static List<Flight> scList = new ArrayList<>();
+
 
 
     public Flight() {
@@ -30,7 +33,8 @@ public class Flight implements Serializable {
         this.time = time;
     }
 
-    public static void createSchedule(){
+    public static List<Flight> createSchedule(){
+         List<Flight> scList = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             Flight flight = new Flight(
                     ++count,
@@ -43,7 +47,7 @@ public class Flight implements Serializable {
                     (int) (Math.random() * 100));
             scList.add(flight);
         }
-        writeToFile(scList);
+       return scList;
     }
 
     public static void writeToFile(List<Flight> flights) {
@@ -77,6 +81,14 @@ public class Flight implements Serializable {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
     }
 
     @Override

@@ -1,14 +1,8 @@
-package Dao;
+package dao;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class UserDaoTest {
-
-    @Test
-    void getById() {
-    }
+class FlightDaoTest {
 
     @Test
     void getAll() {
@@ -16,6 +10,10 @@ class UserDaoTest {
 
     @Test
     void get() {
+    }
+
+    @Test
+    void getById() {
     }
 
     @Test

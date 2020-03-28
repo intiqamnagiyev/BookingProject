@@ -7,49 +7,50 @@ public class Inputs {
     Scanner scanner = new Scanner(System.in);
 
     public int inputId() {
-        System.out.println("Enter flight ID: ");
-        int id = scanner.nextInt();
-        return id;
+        int flightId=0;
+        while (true){
+            System.out.println("Enter flight ID: ");
+            Scanner scanner1 =new Scanner(System.in);
+            try {
+                flightId=scanner1.nextInt();
+                break;
+            }catch (Exception e){
+                System.out.println("invalid flightId, Again pls.");
+            }
+        }
+        return flightId;
     }
     public String inputPassengerName(){
         System.out.println("Enter Passenger name : ");
-        String name = scanner.next();
-        return name;
+        return scanner.next();
     }
     public String inputPassengerSurname(){
         System.out.println("Enter Passenger Surname : ");
-        String surname = scanner.next();
-        return surname;
+        return scanner.next();
     }
     public String inputUsername(){
         System.out.println("Username:");
-        String username = scanner.next();
-        return username;
+        return scanner.next();
     }
-    public String inputPssword(){
+    public String inputPassword(){
         System.out.println("Password:");
-        String password = scanner.next();
-        return password;
+        return scanner.next();
     }
     public String inputCity(){
         System.out.println("Enter destination city: ");
-        String city = scanner.next().toUpperCase();
-        return city;
+        return scanner.next().toUpperCase();
     }
     public LocalDate inputDate(){
         System.out.println("Enter date(like YYYY-MM-DD):");
-        LocalDate date = LocalDate.parse(scanner.next());
-        return date;
+        return LocalDate.parse(scanner.next());
     }
     public int inputTickets(){
         System.out.println("Enter number of tickets: ");
-        int tickets = scanner.nextInt();
-        return tickets;
+        return scanner.nextInt();
     }
     public int inputCancelId(){
         System.out.println("Enter Booking ID: ");
-        int cancelID = scanner.nextInt();
-        return cancelID;
+        return scanner.nextInt();
     }
 
 

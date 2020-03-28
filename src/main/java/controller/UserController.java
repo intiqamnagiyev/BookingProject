@@ -23,4 +23,8 @@ public class UserController {
             System.out.println("Something went wrong! Sign up again.");
         }
     }
+
+    public void loadData() {
+        userService.loadData();
+    }
 }

@@ -1,6 +1,6 @@
 package model;
 
-import java.io.*;
+import java.io.Serializable;
 import java.util.List;
 
 public class Booking implements Serializable {
@@ -9,7 +9,7 @@ public class Booking implements Serializable {
     private Flight flight;
     private List<Passenger> passengerList;
 
-    public Booking(int id,User user, Flight flight, List<Passenger> passengerList) {
+    public Booking(int id, User user, Flight flight, List<Passenger> passengerList) {
         this.user = user;
         this.id = id;
         this.flight = flight;

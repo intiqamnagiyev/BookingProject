@@ -1,35 +1,31 @@
 package controller;
 
 import model.Booking;
+import model.Flight;
 import model.Passenger;
 import services.BookingService;
-
-import java.io.IOException;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookingController {
+
     private BookingService bookingService = new BookingService();
 
-    public void makeBooking(int flightId, List<Passenger> passengers)  {
+    public void makeBooking(Flight flight, List<Passenger> passengers)  {
 
-        try {
-            if (bookingService.makeBooking(flightId,passengers)) {
-                System.out.println("You have made new booking!");
-            } else {
-                System.out.println("Something went wrong, please try again!");
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error occurred while create booking");
+        if (bookingService.makeBooking(flight, passengers)) {
+            System.out.println("You have made new booking!");
+        } else {
+            System.out.println("Something went wrong, please try again!");
         }
     }
 
     public void showMyBookings() {
-        if (bookingService.showMyBookings().isEmpty()) {
+        if (bookingService.getAllBookings().isEmpty()) {
             System.out.println("Your booking list is empty!");
         } else {
-        bookingService.showMyBookings().stream()
+        bookingService.getAllBookings().stream()
                     .collect(Collectors.toMap(booking -> booking, Booking::getPassengerList))
                      .keySet().forEach(booking -> {
                  System.out.printf("Booking ID:%-3d Flight ID:%-12s\nPassenger List :\n -------------------------------------\n", booking.getId(),booking.getFlight());
@@ -43,7 +39,11 @@ public class BookingController {
         }
     }
 
-    public void cancelBooking(int cancelID) {
-        bookingService.cancelBooking(cancelID);
+    public void cancelBooking(int cancelId) {
+        bookingService.cancelBooking(cancelId);
+    }
+
+    public void loadData() {
+        bookingService.loadData();
     }
 }

@@ -1,15 +1,17 @@
-
 import menu.MenuOperation;
 import menu.ShowMenu;
 
 import java.util.Scanner;
 
 public class BookingApp {
+
     private MenuOperation menuOperation = new MenuOperation();
     private ShowMenu showMenu = new ShowMenu();
 
     public void run() {
+        menuOperation.loadData();
         Scanner scanner = new Scanner(System.in);
+
         boolean flag0 = true;
         while (flag0) {
             boolean flag1 = false;

@@ -17,7 +17,7 @@ public class MenuOperation {
 
     public boolean getUser() {
         try {
-            userController.getUser(new User(inputs.inputUsername(), inputs.inputPssword()));
+            userController.getUser(new User(inputs.inputUsername(), inputs.inputPassword()));
             return true;
         } catch (Exception e) {
             System.out.println("User doesn't exist, please sign up!");
@@ -26,7 +26,7 @@ public class MenuOperation {
     }
 
     public void createNewUser() {
-        userController.creatNewUser(new User(inputs.inputUsername(), inputs.inputPssword()));
+        userController.creatNewUser(new User(inputs.inputUsername(), inputs.inputPassword()));
     }
 
     public void getAllFlights() {
@@ -63,7 +63,8 @@ public class MenuOperation {
                 for (int i = 0; i < tickets; i++) {
                     passengers.add(new Passenger(inputs.inputPassengerName(), inputs.inputPassengerSurname()));
                 }
-                bookingController.makeBooking(id, passengers);
+                flightController.getById(id).setSeats(flightController.getById(id).getSeats()-passengers.size());
+                bookingController.makeBooking(flightController.getById(id), passengers);
                 validate = false;
             } else {
                 System.out.println("Ticket count has to be at least 1!");
@@ -89,5 +90,11 @@ public class MenuOperation {
 
     public void invalidMenuItem() {
         System.out.println("invalid Menu Item");
+    }
+
+    public void loadData() {
+        bookingController.loadData();
+        flightController.loadData();
+        userController.loadData();
     }
 }
