@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Passenger implements Serializable {
     private String name;
-    private  String surname;
+    private String surname;
 
     public Passenger(String name, String surname) {
         this.name = name;
@@ -21,6 +21,6 @@ public class Passenger implements Serializable {
 
     @Override
     public String toString() {
-        return String.format(" Name:%-10s Surname:%-10s\n", name , surname);
+        return String.format(" Name:%-10s Surname:%-10s\n", name, surname);
     }
 }

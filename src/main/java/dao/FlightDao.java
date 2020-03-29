@@ -33,10 +33,7 @@ public class FlightDao implements Dao<Flight> {
 
     @Override
     public boolean save(Flight flight) {
-//        List<Flight> flightList = database.getFlightList();
-//        flightList.add(flight);
-//        database.write(flightList);
-        return true;
+        return flights.add(flight);
     }
 
     @Override
@@ -51,7 +48,7 @@ public class FlightDao implements Dao<Flight> {
 
     public void writeToFile() {
         try {
-            File file = new File("Schedule.txt");
+            File file = new File("src\\main\\java\\file\\Schedule.txt");
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(flights);
@@ -68,7 +65,7 @@ public class FlightDao implements Dao<Flight> {
         flights = Flight.createSchedule();
         writeToFile();
         try {
-            File file = new File("Schedule.txt");
+            File file = new File("src\\main\\java\\file\\Schedule.txt");
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             flights = (List<Flight>) ois.readObject();

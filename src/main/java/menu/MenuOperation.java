@@ -48,6 +48,7 @@ public class MenuOperation {
             System.out.println("Invalid date format, please enter data YYYY-MM-DD format");
             return false;
         } catch (Exception ex) {
+            ex.printStackTrace();
             System.out.println("Date format is not true!");
             return false;
         }
@@ -63,7 +64,7 @@ public class MenuOperation {
                 for (int i = 0; i < tickets; i++) {
                     passengers.add(new Passenger(inputs.inputPassengerName(), inputs.inputPassengerSurname()));
                 }
-                flightController.getById(id).setSeats(flightController.getById(id).getSeats()-passengers.size());
+                flightController.getById(id).setSeats(flightController.getById(id).getSeats() - passengers.size());
                 bookingController.makeBooking(flightController.getById(id), passengers);
                 validate = false;
             } else {

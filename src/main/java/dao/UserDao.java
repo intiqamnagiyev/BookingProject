@@ -49,7 +49,7 @@ public class UserDao implements Dao<User> {
     @Override
     public void loadData() {
         try {
-            File file = new File("Users.txt");
+            File file = new File("src\\main\\java\\file\\Users.txt");
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             users = (List<User>) ois.readObject();
@@ -60,7 +60,7 @@ public class UserDao implements Dao<User> {
 
     public boolean writeToFileUser() {
         try {
-            File file = new File("Users.txt");
+            File file = new File("src\\main\\java\\file\\Users.txt");
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(users);

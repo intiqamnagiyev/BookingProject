@@ -9,14 +9,15 @@ import model.Session;
 
 import java.util.Comparator;
 import java.util.List;
+
 public class BookingService {
     private Dao<Booking> bookingDao = new BookingDao();
 
 
-    public boolean makeBooking(Flight flight, List<Passenger> passengers)  {
+    public boolean makeBooking(Flight flight, List<Passenger> passengers) {
         int lastBookingId = getLastBookingId();
         Booking booking = new Booking(++lastBookingId, Session.getUser(), flight, passengers);
-      return   bookingDao.save(booking);
+        return bookingDao.save(booking);
     }
 
     public List<Booking> getAllBookings() {
@@ -27,7 +28,7 @@ public class BookingService {
         try {
             bookingDao.delete(cancelId);
         } catch (Exception e) {
-            System.out.println("May be there is no such Booking with id: "+cancelId);
+            System.out.println("May be there is no such Booking with id: " + cancelId);
         }
     }
 

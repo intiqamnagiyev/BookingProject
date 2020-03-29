@@ -24,9 +24,12 @@ public class FlightController {
         }
     }
     public void search(Flight flight) {
+
         try {
-            Flight search = flightService.search(flight);
-            System.out.println(search);
+            for (Flight search : flightService.search(flight)) {
+                System.out.println(search);
+            }
+
         } catch (Exception e) {
             System.out.println("Flight can't found!");
         }

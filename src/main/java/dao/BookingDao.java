@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class BookingDao implements Dao<Booking> {
-    private List<Booking> bookings =new ArrayList<>();
+    private List<Booking> bookings = new ArrayList<>();
 
 
     @Override
-    public List<Booking> getAll()  {
+    public List<Booking> getAll() {
         return bookings;
     }
 
@@ -35,7 +35,7 @@ public class BookingDao implements Dao<Booking> {
 
     @Override
     public boolean delete(int id) {
-        bookings.removeIf(booking -> booking.getId()==id);
+        bookings.removeIf(booking -> booking.getId() == id);
         return writeToFileBooking();
 
     }
@@ -47,21 +47,18 @@ public class BookingDao implements Dao<Booking> {
 
     @Override
     public void loadData() {
-        try {
-            File file = new File("Booking.txt");
-            FileInputStream fis = new FileInputStream(file);
-            ObjectInputStream ois = new ObjectInputStream(fis);
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(
+                new File("src\\main\\java\\file\\Booking.txt")))) {
             bookings = (List<Booking>) ois.readObject();
-            ois.close();
-            fis.close();
-        }catch (Exception e){
+
+        } catch (Exception e) {
             System.out.println();
         }
     }
 
     public boolean writeToFileBooking() {
         try {
-            File file = new File("Booking.txt");
+            File file = new File("src\\main\\java\\file\\Booking.txt");
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(bookings);

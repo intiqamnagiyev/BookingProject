@@ -1,30 +1,49 @@
 package services;
 
+import model.Flight;
+import model.Passenger;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class BookingServiceTest {
-    BookingService bookingService = new BookingService();
+    private  static  BookingService bookingService = new BookingService();
+    static Flight flight = new Flight();
+    static List<Passenger> psLst = new ArrayList<>();
+
+     @BeforeAll
+     static void beforeAll(){
+         bookingService.makeBooking(flight,psLst);
+     }
 
     @Test
-    void makeBooking() {
+    void makeBookingTest() {
+        assertTrue(bookingService.makeBooking(flight,psLst));
     }
 
     @Test
-    void testShowMyBookings() throws IOException, ClassNotFoundException {
-        /*bookingService.makeBooking(2);
-        assertFalse(bookingService.showMyBookings().isEmpty());*/
+    void loadDataTest() {
+        bookingService.loadData();
+      assertFalse(bookingService.getAllBookings().isEmpty());
     }
 
     @Test
-    void testCancelBooking() {
-
+    void getAllBookingsTest() {
+        assertFalse(bookingService.getAllBookings().isEmpty());
     }
 
     @Test
-    void testGetLastBookingId() {
+    void cancelBookingTest() {
+        bookingService.cancelBooking(1);
+        assertEquals(1,bookingService.getAllBookings().size());
+    }
+
+    @Test
+    void getLastBookingIdTest() {
+        assertEquals(2,bookingService.getLastBookingId());
     }
 }

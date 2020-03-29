@@ -1,11 +1,12 @@
 package model;
 
-import java.io.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Flight implements Serializable {
     private int id;
@@ -13,18 +14,14 @@ public class Flight implements Serializable {
     private City to;
     private LocalDate date;
     private LocalTime time;
-
-
-
-    private  int seats;
+    private int seats;
     private static int count = 0;
-
 
 
     public Flight() {
     }
 
-    private Flight(int id, City from, City to, LocalDate date, LocalTime time, int seats) {
+    public Flight(int id, City from, City to, LocalDate date, LocalTime time, int seats) {
         this.id = id;
         this.from = from;
         this.to = to;
@@ -33,8 +30,13 @@ public class Flight implements Serializable {
         this.time = time;
     }
 
-    public static List<Flight> createSchedule(){
-         List<Flight> scList = new ArrayList<>();
+    public Flight(City to, LocalDate date) {
+        this.to = to;
+        this.date = date;
+    }
+
+    public static List<Flight> createSchedule() {
+        List<Flight> scList = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             Flight flight = new Flight(
                     ++count,
@@ -47,29 +49,10 @@ public class Flight implements Serializable {
                     (int) (Math.random() * 100));
             scList.add(flight);
         }
-       return scList;
-    }
-
-    public static void writeToFile(List<Flight> flights) {
-        try {
-            File file = new File("schedule.txt");
-            FileOutputStream fos = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(flights);
-            oos.close();
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("File cannot found!");
-        }
+        return scList;
     }
 
 
-
-    public Flight(City to, LocalDate date) {
-        this.to = to;
-        this.date = date;
-    }
 
     public int getId() {
         return id;
@@ -89,6 +72,22 @@ public class Flight implements Serializable {
 
     public void setSeats(int seats) {
         this.seats = seats;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Flight flight = (Flight) o;
+        return id == flight.id &&
+                to == flight.to &&
+                Objects.equals(date, flight.date) &&
+                Objects.equals(time, flight.time);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, from, to, date, time, seats);
     }
 
     @Override
